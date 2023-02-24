@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
@@ -44,30 +44,26 @@ const appointments = {
 };
 
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
-
 export default function Application(props) {
-  const [day, setDay] = useState("Monday"); //MIGHT NEED TO CHANGE SETDAY TO ONCHANGE
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+   //appointments: {}
+  });
+  
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState(prev => ({ ...prev, days }));
+  
 
   const parsedAppointments = Object.values(appointments).map((appointment) => {
     return <Appointment key={appointment.id} {...appointment} />
   }) 
+
+  useEffect(() => {
+    axios.get('/api/days')
+      .then((res) => setDays(res.data))
+  }, [])
 
 
   return (
@@ -81,8 +77,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={days}
-            value={day}
+            days={state.days}
+            day={state.day}
             onChange={day => console.log(day)}
           />
         </nav>
