@@ -10,3 +10,18 @@ export function getAppointmentsForDay(state, day) {
   });
   return filteredAppointments;
 }
+
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null
+  }
+
+  for (let interviewer in state.interviewers) {
+    if (state.interviewers[interviewer].id === interview.interviewer) {
+      return {
+        'student': interview.student,
+        'interviewer': state.interviewers[interviewer]
+      }
+    }
+  }
+}
