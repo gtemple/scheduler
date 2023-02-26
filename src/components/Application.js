@@ -70,7 +70,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {parsedAppointments}
+        {schedule}
       </section>
     </main>
   );
