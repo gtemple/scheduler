@@ -44,13 +44,11 @@ export default function Application(props) {
       ...state.appointments[id],
       interview: null
     };
-    console.log(appointment)
 
     const appointments = {
       ...state.appointments,
       [id]: appointment
     }
-    console.log(appointments)
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => setState({...state, appointments}))
