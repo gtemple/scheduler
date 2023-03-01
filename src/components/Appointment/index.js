@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./styles.scss";
 import Header from "./Header";
 import Show from "./Show";
@@ -17,7 +17,7 @@ export default function Appointment(props) {
   const EDIT = "EDIT";
   const SAVING = "SAVING";
   const DELETING = "DELETING";
-  const ERROR_SAVE = "ERROR SAVE"
+  const ERROR_SAVE = "ERROR SAVE";
   const ERROR_DELETE = "ERROR DELETE";
 
   const { mode, transition, back } = useVisualMode(
@@ -30,9 +30,10 @@ export default function Appointment(props) {
       interviewer,
     };
     transition(SAVING);
-    props.bookInterview(props.id, interview)
+    props
+      .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true));
+      .catch((error) => transition(ERROR_SAVE, true));
   };
 
   const deleteCheck = () => {
@@ -44,16 +45,17 @@ export default function Appointment(props) {
       transition(SHOW);
       return;
     }
-    if(checkDelete) {
-      transition(DELETING, true)
-      props.cancelInterview(props.id)
+    if (checkDelete) {
+      transition(DELETING, true);
+      props
+        .cancelInterview(props.id)
         .then(() => transition(EMPTY))
-        .catch(error => transition(ERROR_DELETE, true));
+        .catch((error) => transition(ERROR_DELETE, true));
     }
   };
 
   const edit = () => {
-    transition(EDIT)
+    transition(EDIT);
   };
 
   return (
@@ -90,18 +92,14 @@ export default function Appointment(props) {
           onSave={save}
         />
       )}
-      {mode === DELETING && <Status message="Deleting"/>}
+      {mode === DELETING && <Status message="Deleting" />}
       {mode === SAVING && <Status message="Saving" />}
-      {mode === ERROR_SAVE && 
-        <Error 
-          message="Could not save"
-          onClose={() => back()}
-          />}
-      {mode === ERROR_DELETE && 
-        <Error 
-          message="Could not delete"
-          onClose={() => back()}
-          />}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not save" onClose={() => back()} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message="Could not delete" onClose={() => back()} />
+      )}
     </article>
   );
 }
