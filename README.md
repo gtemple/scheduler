@@ -19,10 +19,10 @@ Only currently has required functionality. Hit many roadblocks which slowed prog
   1. Deploying the server and client
   2. Using this project to practice with web sockets
 
- ##Gif
+## Gif
 !["gif"](https://github.com/gtemple/scheduler/blob/master/docs/Screen%20Recording%202023-03-01%20at%206.31.55%20PM.gif?raw=true)
 
-##Screenshots
+## Screenshots
 !["Main page"](https://i.imgur.com/eTa3AB9.png)
 !["Creating an interview"](https://i.imgur.com/VcP8JUr.png)
 !["Deleting an interview"](https://i.imgur.com/Kzq02Oz.png)
