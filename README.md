@@ -20,7 +20,7 @@ Only currently has required functionality. Hit many roadblocks which slowed prog
   2. Using this project to practice with web sockets
 
  ##Gif
-!["gif"](https://i.imgur.com/eTa3AB9.png)
+!["gif"](https://github.com/gtemple/scheduler/blob/master/docs/Screen%20Recording%202023-03-01%20at%206.31.55%20PM.gif?raw=true)
 
 ##Screenshots
 !["Main page"](https://i.imgur.com/eTa3AB9.png)
